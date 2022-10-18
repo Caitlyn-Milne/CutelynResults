@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32519.379
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CutelynResults", "CutelynResults\CutelynResults.csproj", "{30C2AF76-29B6-4849-A896-A1A095B8F69D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{23ABB98D-75CB-4205-9637-F06971BBD7EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30C2AF76-29B6-4849-A896-A1A095B8F69D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C2AF76-29B6-4849-A896-A1A095B8F69D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C2AF76-29B6-4849-A896-A1A095B8F69D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C2AF76-29B6-4849-A896-A1A095B8F69D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23ABB98D-75CB-4205-9637-F06971BBD7EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23ABB98D-75CB-4205-9637-F06971BBD7EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23ABB98D-75CB-4205-9637-F06971BBD7EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23ABB98D-75CB-4205-9637-F06971BBD7EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9FE8F120-C3F3-4A71-AB6D-FB117EFBE5D8}
+	EndGlobalSection
+EndGlobal
