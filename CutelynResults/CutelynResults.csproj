@@ -1,9 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
+   <PropertyGroup>
+      <TargetFramework>net6.0</TargetFramework>
+      <ImplicitUsings>enable</ImplicitUsings>
+      <Nullable>enable</Nullable>
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
+	  <PackageId>CutelynResults</PackageId>
+	  <Authors>Caitlyn Milne</Authors>
+	  <Description>CutelynResults creates a way to manage exceptions in C# while enforcing exception handling.</Description>
+	  <PackageProjectUrl>https://github.com/Caitlyn-Milne/CutelynResults</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/Caitlyn-Milne/CutelynResults</RepositoryUrl>
+	  <RepositoryType>git</RepositoryType>
+   </PropertyGroup>
 </Project>
