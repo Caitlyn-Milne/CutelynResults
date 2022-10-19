@@ -1,4 +1,5 @@
 *last updated: 19/10/2022*
+
 CutelynResults creates away to manage exceptions in C# while enforcing exception handling. Heavily inspired by Rust's results, a result can either be `Success` or `Error`. An `Error` here contains an Exception. `Success<T>` also can contain a value. 
 
 The benefits of using IResults is it requires you to check if the result is successful or not before being able to get the success value. Prompting handling of the error cases. 
@@ -21,7 +22,7 @@ public IResult<HttpContent> IoCall(){
 }
 ```
 
-### Handling I Result
+### Handling IResult
 Using c# pattern matching you can check wether a result is `ISuccess` or `IError` ,  and then get the `.Value` or `.Exception` from these casted variables.
 
 ```cs
