@@ -14,7 +14,7 @@ public static class _Aggregate
         return results.Select<IResult,IResult<object?>>
         (result =>
             (result is IError e) 
-            ? e.Cast<IResult<object?>>() 
+            ? e.Convert<IResult<object?>>() 
             : IResult.Success<object?>(null)
         ).Aggregate();
     }

@@ -97,6 +97,45 @@ public partial interface IResult
         }
         return this;
     }
+
+
+    /// <summary>
+    /// Converts IResult to IResult<A> if result is success
+    /// </summary>
+    public IResult<A> Convert<A>(A successValue)
+    {
+        return Convert(() => successValue);
+    }
+
+    /// <inheritdoc/>
+    public IResult<A> Convert<A>(Func<A> convertBlock)
+    {
+        if (convertBlock is null) 
+        {
+            throw new ArgumentNullException(nameof(convertBlock));
+        }
+        if (this is IError error)
+        {
+            return error.Convert<A>();
+        }
+        return Success(convertBlock.Invoke());
+    }
+
+    /// <summary>
+    ///  If the result is success, return another result.
+    /// </summary>
+    public IResult<A> ConvertShakey<A>(Func<IResult<A>> convertBlock)
+    {
+        if (convertBlock is null)
+        {
+            throw new ArgumentNullException(nameof(convertBlock));
+        }
+        if (this is IError error)
+        {
+            return error.Convert<A>();
+        }
+        return convertBlock.Invoke();
+    }
 }
 
 public interface IResult<out T> : IResult 
@@ -128,6 +167,46 @@ public interface IResult<out T> : IResult
             action?.Invoke(success.Value);
         }
         return this;
+    }
+
+    /// <summary>
+    /// Converts IResult<T> to IResult<A> when given a converter function from T to A
+    /// </summary>
+    public IResult<A> Convert<A>(Func<T,A> convertBlock) 
+    {
+        if (convertBlock is null)
+        {
+            throw new ArgumentNullException(nameof(convertBlock));
+        }
+        if (this is IError<T> error) 
+        {
+            return error.Convert<A>();
+        }
+        try
+        {
+            var valueA = convertBlock.Invoke(Unwrap());
+            return Success(valueA);
+        }
+        catch (Exception e)
+        {
+            return Error<A>(e);
+        }
+    }
+
+    /// <summary>
+    /// If the result is success, convert the value to another result. Used in place of Convert, where convertion may error. 
+    /// </summary>
+    public IResult<A> ConvertShaky<A>(Func<T, IResult<A>> exchange)
+    {
+        if (exchange is null)
+        {
+            throw new ArgumentNullException(nameof(exchange));
+        }
+        if (this is IError<T> error)
+        {
+            return error.Convert<A>();
+        }
+        return exchange.Invoke(Unwrap());
     }
 }
 

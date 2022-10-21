@@ -9,7 +9,7 @@ public interface ISuccess<out T> : ISuccess, IResult<T>
 
 internal class Success : ISuccess { }
 
-internal class Success<T> : Success, ISuccess<T>
+internal sealed class Success<T> : Success, ISuccess<T>
 {
     private T _value;
     public T Value => _value;

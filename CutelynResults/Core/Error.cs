@@ -7,13 +7,16 @@ public interface IError : IResult
 {
     Exception Exception { get; }
 
-    public IError<T> Cast<T>() 
+    public IError<A> Convert<A>() 
     {
-        return new Error<T>(Exception);
+        return new Error<A>(Exception);
     }
 }
 
-public interface IError<out T> : IError, IResult<T> {}
+public interface IError<out T> : IError, IResult<T> 
+{
+
+}
 
 internal class Error : IError
 {
@@ -24,7 +27,7 @@ internal class Error : IError
         _exception = exception;
         try
         {
-            exception.SetStackTrace(new StackTrace(5));
+            exception.SetStackTrace(new StackTrace(1));
         }
         catch (Exception) 
         { 
@@ -32,7 +35,7 @@ internal class Error : IError
         }
     }
 }
-internal class Error<T> : Error, IError<T>
+internal sealed class Error<T> : Error, IError<T>
 {
     internal Error(Exception exception) : base(exception) { }
 }

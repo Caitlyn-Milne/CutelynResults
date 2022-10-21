@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
    <PropertyGroup>
       <TargetFramework>net6.0</TargetFramework>
       <ImplicitUsings>enable</ImplicitUsings>
@@ -10,5 +10,20 @@
 	  <PackageProjectUrl>https://github.com/Caitlyn-Milne/CutelynResults</PackageProjectUrl>
 	  <RepositoryUrl>https://github.com/Caitlyn-Milne/CutelynResults</RepositoryUrl>
 	  <RepositoryType>git</RepositoryType>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
+	  <PackageIcon>Debut(Cutelyn) Logo.png</PackageIcon>
+	  <Version>$(VersionPrefix)</Version>
+	  <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
    </PropertyGroup>
+   <ItemGroup>
+     <None Include="..\Debut(Cutelyn) Logo.png">
+       <Pack>True</Pack>
+       <PackagePath>\</PackagePath>
+     </None>
+     <None Include="..\README.md">
+       <Pack>True</Pack>
+       <PackagePath>\</PackagePath>
+     </None>
+	   <None Include="..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)" />
+   </ItemGroup>
 </Project>

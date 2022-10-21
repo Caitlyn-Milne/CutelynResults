@@ -56,19 +56,7 @@ internal class Core
         Assert.That(str, Is.EqualTo(testValue));
     }
 
-    [Test]
-    public void ErrorCast() 
-    {
-        IError nonGenericError = IResult.Error(new TestException());
-        IResult<int>? intResult;
-        IResult<String>? boxedStringResult;
-        Assert.DoesNotThrow(() => {
-            intResult = nonGenericError.Cast<int>();
-        });
-        Assert.DoesNotThrow(() => {
-            boxedStringResult = nonGenericError.Cast<String>();
-        });
-    }
+
 
     private IResult ReturnsError() =>
         IResult.Error(new TestException());
@@ -85,6 +73,6 @@ internal class Core
 
 
     private IResult<string> ReturnsErrorFromChain() =>
-       ((IError) ReturnsErrorOfInt()).Cast<string>();
+       ((IError) ReturnsErrorOfInt()).Convert<string>();
 
 }
