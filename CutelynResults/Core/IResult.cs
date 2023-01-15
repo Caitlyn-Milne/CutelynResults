@@ -30,11 +30,13 @@ public partial interface IResult
         return new Success<T>(value);
     }
 
-    public static IResult<T> Try<T>(Func<T> tryBlock) {
-        if (tryBlock is null) 
+    public static IResult<T> Try<T>(Func<T> tryBlock)
+    {
+        if (tryBlock is null)
         {
             throw new ArgumentNullException(nameof(tryBlock));
         }
+
         try
         {
             var value = tryBlock!.Invoke();
@@ -52,6 +54,7 @@ public partial interface IResult
         {
             throw new ArgumentNullException(nameof(tryBlock));
         }
+
         try
         {
             tryBlock!.Invoke();
@@ -60,6 +63,41 @@ public partial interface IResult
         catch (Exception e)
         {
             return Error(e);
+        }
+    }
+
+
+    public static async Task<IResult> TryAsync(Func<Task> tryBlock)
+    {
+        if (tryBlock is null)
+        {
+            throw new ArgumentNullException(nameof(tryBlock));
+        }
+        try
+        {
+            await tryBlock.Invoke();
+            return Success();
+        }
+        catch (Exception e)
+        {
+            return Error(e);
+        }
+    }
+
+    public static async Task<IResult<T>> TryAsync<T>(Func<Task<T>> tryBlock)
+    {
+        if (tryBlock is null)
+        {
+            throw new ArgumentNullException(nameof(tryBlock));
+        }
+        try
+        {
+            var value = await tryBlock.Invoke();
+            return Success(value);
+        }
+        catch (Exception e)
+        {
+            return Error<T>(e);
         }
     }
 }

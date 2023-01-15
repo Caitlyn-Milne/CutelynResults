@@ -14,6 +14,7 @@
 	  <PackageIcon>Debut(Cutelyn) Logo.png</PackageIcon>
 	  <Version>$(VersionPrefix)</Version>
 	  <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+	  <PackageTags>Exception Handling, Results, Exceptions</PackageTags>
    </PropertyGroup>
    <ItemGroup>
      <None Include="..\Debut(Cutelyn) Logo.png">
