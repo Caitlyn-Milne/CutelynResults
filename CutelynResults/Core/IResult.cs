@@ -174,6 +174,14 @@ public partial interface IResult
         }
         return convertBlock.Invoke();
     }
+
+    void ThrowIfError()
+    {
+        if (this is IError error)
+        {
+            throw error.Exception;
+        }
+    }
 }
 
 public interface IResult<out T> : IResult 
