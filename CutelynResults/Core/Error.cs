@@ -1,11 +1,11 @@
-﻿using CutelynResults.Utils;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace CutelynResults.Core;
 
 public interface IError : IResult
 {
     Exception Exception { get; }
+    public string StackTrace { get; }
 
     public IError<A> Convert<A>() 
     {
@@ -22,22 +22,17 @@ internal class Error : IError
 {
     private Exception _exception;
     public Exception Exception => _exception;
-    internal Error(Exception exception) 
+    public string StackTrace { get; }
+
+    internal Error(Exception exception)
     {
         _exception = exception;
-        try
-        {
-            exception.SetStackTrace(new StackTrace(1));
-        }
-        catch (Exception) 
-        { 
-            //ignored
-        }
+        StackTrace = Environment.StackTrace;
     }
 }
 internal sealed class Error<T> : Error, IError<T>
 {
-    internal Error(Exception exception) : base(exception) { }
+    internal Error(Exception exception) :base(exception) { }
 }
 
 
