@@ -117,12 +117,21 @@ public partial interface IResult
         return ((IError)this).Exception;
     }
 
-
     public IResult OnError(Action<Exception> action) 
     {
         if (this is IError error) 
         {
             action?.Invoke(error.Exception);
+        }
+        return this;
+    }
+
+    public IResult OnError<TException>(Action<TException> action)
+    where TException : Exception
+    {
+        if (this is IError { Exception: TException exception } )
+        {
+            action?.Invoke(exception);
         }
         return this;
     }

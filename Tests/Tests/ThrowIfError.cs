@@ -18,7 +18,7 @@ internal class ThrowIfError
     [Test]
     public void WhenSuccess_ShouldNotThrow()
     {
-        var result = IResult.Success();
+        IResult result = IResult.Success();
         Assert.DoesNotThrow(() => result.ThrowIfError());
     }
 }
