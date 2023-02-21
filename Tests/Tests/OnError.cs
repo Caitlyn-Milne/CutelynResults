@@ -1,4 +1,4 @@
-﻿namespace Tests.Tests;
+﻿namespace Tests;
 
 internal class OnError
 {

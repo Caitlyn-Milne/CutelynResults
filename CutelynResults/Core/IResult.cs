@@ -191,6 +191,8 @@ public partial interface IResult
             throw error.Exception;
         }
     }
+
+
 }
 
 public interface IResult<out T> : IResult 
@@ -264,6 +266,4 @@ public interface IResult<out T> : IResult
         return exchange.Invoke(Unwrap());
     }
 }
-
-
 
