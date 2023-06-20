@@ -14,7 +14,7 @@ The benefits of using CutelynResults, is it requires you to check if the result 
   * [Converting an error](#converting-an-error)
 - [Try](#try)
 - [OnSuccess OnError](#onsuccess-onerror)
-- [Preview functionality](#preview-functionality)
+- [Preview functionality](#0.2.0-alpha.1-Preview-functionality)
   * [Destruct](#destruct)
   * [TryAsync](#tryasync)
 
