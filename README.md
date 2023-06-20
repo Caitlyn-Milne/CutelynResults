@@ -214,7 +214,7 @@ public void ReadAndLog(){
 }
 
 ```
-# Preview functionality
+# 0.2.0-alpha.1 Preview functionality
 
 ## Destruct
 *motive - there can be alot of boiler plate code just to get the value or exception from the results, maybe a method destructing the values into varibles could help reduce this boiler plate*
