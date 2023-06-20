@@ -219,25 +219,48 @@ public void ReadAndLog(){
 ## Destruct
 *motive - there can be alot of boiler plate code just to get the value or exception from the results, maybe a method destructing the values into varibles could help reduce this boiler plate*
 
-Destruct returns true if result is ISuccess. The value out parameter is equal to `ISuccess<T>.Value` if result is ISuccess, else it is `default(T)`. The exception out parameter is equal to `IError.Exception` if result is IError, else it is null.
+Destruct returns true if result is ISuccess. The value out parameter is equal to `ISuccess<T>.Value` if result is ISuccess, else it is `default(T)`. The exception out parameter is equal to `IError` if result is an error, else it is null.
 
+**The reason this returns the IError object for failure instead of the exception is because in most use cases you will want to return an error.**
+
+Basic Example:
 ```cs
 public void UserRequestsIoCall()
 {
 	IResult<HttpContent> requestResult = IoCall();
 	
-	if(requestResult.Destruct(out HttpContent requestContent, out Exception exception))
+	if(requestResult.Destruct(out HttpContent requestContent, out IError error))
 	{
 		//on success
-		Console.WriteLine("success: " + requestContent);
-		...
 	}
 	else
 	{
 		//on error
-		Console.WriteLine("error: " + exception.Message);
-		...
 	}
+}
+```
+
+Chain Example:
+```cs
+public void MainTask()
+{
+	if(!SomeTask().Destruct(out MyData someData, out IError someError))
+		return someError;
+
+	if(!OtherTask().Destruct(out MyData otherData, out IError otherError))
+		return otherError;
+
+	DoThingWith(someData).And(otherData);
+}
+
+public IResult<MyData> SomeTask();
+{
+	...
+}
+
+public IResult<MyData> OtherTask();
+{
+	...
 }
 ```
 

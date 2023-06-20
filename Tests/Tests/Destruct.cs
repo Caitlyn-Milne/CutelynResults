@@ -41,8 +41,8 @@ internal class Destruct
     public void GivenISuccess_WhenDestruct_ShouldNotHaveOutError()
     {
         IResult<int> result = IResult.Success(42);
-        result.Destruct(out _, out var exception);
-        Assert.That(exception, Is.Null);
+        result.Destruct(out _, out var error);
+        Assert.That(error, Is.Null);
     }
 
     [Test]
@@ -50,7 +50,7 @@ internal class Destruct
     {
         IResult<int> result = IResult.Error<int>(new TestException());
         result.Destruct(out _, out var error);
-        Assert.That(error, Is.EqualTo(result.UnwrapException()));
+        Assert.That(error, Is.EqualTo(result));
     }
 
 
@@ -61,7 +61,7 @@ internal class Destruct
         const string testExceptionMessage = "test message";
 
         IResult<int> result = IResult.Success(testValue);
-        if (result.Destruct(out var value, out var error))
+        if (result.Destruct(out var value, out IError error))
         {
             Assert.That(value, Is.EqualTo(testValue));
         }
@@ -78,7 +78,7 @@ internal class Destruct
         else
         {
             Assert.NotNull(error);
-            Assert.That(error!.Message, Is.EqualTo(testExceptionMessage));
+            Assert.That(error!.Exception.Message, Is.EqualTo(testExceptionMessage));
         }
 
     }
