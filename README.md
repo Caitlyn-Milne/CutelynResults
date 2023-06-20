@@ -14,7 +14,7 @@ The benefits of using CutelynResults, is it requires you to check if the result 
   * [Converting an error](#converting-an-error)
 - [Try](#try)
 - [OnSuccess OnError](#onsuccess-onerror)
-- [Preview functionality](#0.2.0-alpha.1-Preview-functionality)
+- [Preview functionality](#preview-functionality)
   * [Destruct](#destruct)
   * [TryAsync](#tryasync)
 
@@ -214,8 +214,8 @@ public void ReadAndLog(){
 }
 
 ```
-# 0.2.0-alpha.1 Preview functionality
-
+# Preview functionality
+This is the preview functionality for release 0.2.0-alpha.1 
 ## Destruct
 *motive - there can be alot of boiler plate code just to get the value or exception from the results, maybe a method destructing the values into varibles could help reduce this boiler plate*
 
