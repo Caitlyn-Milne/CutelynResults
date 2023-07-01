@@ -215,11 +215,13 @@ public void ReadAndLog(){
 
 ```
 # Preview functionality
-This is the preview functionality for release 0.2.0-alpha.1 
-## Destruct
-*motive - there can be alot of boiler plate code just to get the value or exception from the results, maybe a method destructing the values into varibles could help reduce this boiler plate*
+This is the preview functionality for release 0.2.0-alpha.2 (unreleased)
+## IsError
+*motive - there can be alot of boiler plate code just to get the value or exception from the results, `IsError` allows you to retrieve both the error object and the value at the same time, which can fix this issue*
 
-Destruct returns true if result is ISuccess. The value out parameter is equal to `ISuccess<T>.Value` if result is ISuccess, else it is `default(T)`. The error out parameter is equal to `IError` if result is an error, else it is null.
+IsError returns false if result is IError. The error out parameter is equal to `IError` if result is an error, else it is default/null. The value out parameter is equal to `ISuccess<T>.Value` if result is ISuccess, else it is `default(T)`. 
+
+Originally I was avoiding implimenting an IsError/IsSuccess method, because I wanted people to use pattern matching, however the reduction of boiler plate, and ease of use superceed my desire to avoid implimenting these methods. 
 
 *The reason this returns the IError object for failure instead of the exception is because in most use cases you will want to return an error.*
 
@@ -229,13 +231,13 @@ public void UserRequestsIoCall()
 {
 	IResult<HttpContent> requestResult = IoCall();
 	
-	if(requestResult.Destruct(out HttpContent requestContent, out IError error))
+	if(requestResult.IsError(out IError error, out HttpContent requestContent))
 	{
-		//on success
+		//on error
 	}
 	else
 	{
-		//on error
+		//on success
 	}
 }
 ```
@@ -244,10 +246,10 @@ Chain Example:
 ```cs
 public void MainTask()
 {
-	if(!SomeTask().Destruct(out MyData someData, out IError someError))
+	if(SomeTask().IsError(out IError someError, out MyData someData))
 		return someError;
 
-	if(!OtherTask().Destruct(out MyData otherData, out IError otherError))
+	if(OtherTask().IsError(out IError otherError, out MyData otherData))
 		return otherError;
 
 	DoThingWith(someData).And(otherData);
