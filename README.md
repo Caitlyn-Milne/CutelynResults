@@ -15,7 +15,7 @@ The benefits of using CutelynResults, is it requires you to check if the result 
 - [Try](#try)
 - [OnSuccess OnError](#onsuccess-onerror)
 - [Preview functionality](#preview-functionality)
-  * [Destruct](#destruct)
+  * [IsError](#iserror)
   * [TryAsync](#tryasync)
 
 # Basic Usage
