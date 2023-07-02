@@ -8,12 +8,12 @@ namespace CutelynResults.Core;
 
 public static class _IsError
 {
-    public static bool IsError(this IResult self) //todo test overload
+    public static bool IsError(this IResult self)
     {
         return self is IError;
     }
 
-    public static bool IsError(this IResult self, out IError? error) //todo test overload
+    public static bool IsError(this IResult self, out IError? error)
     {
         if (self is IError e)
         {
@@ -24,7 +24,7 @@ public static class _IsError
         return false;
     }
 
-    public static bool IsError<T>(this IResult<T> self, out IError<T>? error) //todo test overload
+    public static bool IsError<T>(this IResult<T> self, out IError<T>? error)
     {
         if (self is IError<T> e)
         {

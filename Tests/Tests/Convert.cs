@@ -152,7 +152,7 @@ internal class Convert
     {
         const int testValue = 6;
         IResult result = IResult.Success(testValue);
-        IResult<int> intResult = result.ConvertShakey(() => IResult.Success(testValue));
+        IResult<int> intResult = result.ConvertShaky(() => IResult.Success(testValue));
 
         Assert.That(intResult, Is.InstanceOf<ISuccess<int>>());
         var @int = intResult.Unwrap();
@@ -165,7 +165,7 @@ internal class Convert
     {
         const int testValue = 6;
         IResult result = IResult.Success(testValue);
-        IResult<int> intResult = result.ConvertShakey(() => IResult.Error<int>(new TestException()));
+        IResult<int> intResult = result.ConvertShaky(() => IResult.Error<int>(new TestException()));
 
         Assert.That(intResult, Is.InstanceOf<IError<int>>());
         var exception = intResult.UnwrapException();

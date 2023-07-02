@@ -171,7 +171,7 @@ public partial interface IResult
     /// <summary>
     ///  If the result is success, return another result.
     /// </summary>
-    public IResult<A> ConvertShakey<A>(Func<IResult<A>> convertBlock)
+    public IResult<A> ConvertShaky<A>(Func<IResult<A>> convertBlock)
     {
         if (convertBlock is null)
         {
