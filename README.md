@@ -15,7 +15,7 @@ The benefits of using CutelynResults, is it requires you to check if the result 
 - [Try](#try)
 - [OnSuccess OnError](#onsuccess-onerror)
 - [Preview functionality](#preview-functionality)
-  * [Destruct](#destruct)
+  * [IsError](#iserror)
   * [TryAsync](#tryasync)
 
 # Basic Usage
@@ -221,7 +221,7 @@ This is the preview functionality for release 0.2.0-alpha.2 (unreleased)
 
 IsError returns false if result is IError. The error out parameter is equal to `IError` if result is an error, else it is default/null. The value out parameter is equal to `ISuccess<T>.Value` if result is ISuccess, else it is `default(T)`. 
 
-Originally I was avoiding implimenting an IsError/IsSuccess method, because I wanted people to use pattern matching, however the reduction of boiler plate, and ease of use superceed my desire to avoid implimenting these methods. 
+Originally I was avoiding implementing an IsError/IsSuccess method, because I wanted people to use pattern matching, however the reduction of boiler plate, and ease of use, superceed my desire to avoid implementing these methods. 
 
 *The reason this returns the IError object for failure instead of the exception is because in most use cases you will want to return an error.*
 
